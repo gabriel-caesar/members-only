@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+</head>
+<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
+  <h1 style='font-size:2rem;'>
+    Register an account
+  </h1>
+  <form 
+    action="/sign-up"
+    method='POST'
+  >
+    <section id='firstname-section'>
+      <label for="firstname">First Name</label>
+      <input
+        type='text'
+        id='firstname'
+        aria-label='First-Name'
+        name='firstname'
+        placeholder='Foo...'
+      />
+    </section>
+
+    <section id='lastname-section'>
+      <label for="lastname">Last Name</label>
+      <input
+        type='text'
+        id='lastname'
+        aria-label='Last-Name'
+        name='lastname'
+        placeholder='Baz...'
+      />
+    </section>
+
+    <section id='email-section'>
+      <label for="email">Email</label>
+      <input
+        type='text'
+        id='email'
+        aria-label='Email'
+        name='email'
+        placeholder='bar@foo.com...'
+      />
+    </section>
+
+    <section id='password-section'>
+      <label for="password">Password</label>
+      <input
+        type='password'
+        id='password'
+        aria-label='Password'
+        name='password'
+      />
+    </section>
+
+    <section id='confirm-password-section'>
+      <label for="confirm-password">Confirm Password</label>
+      <input
+        type='password'
+        id='confirm-password'
+        aria-label='Confirm-Password'
+        name='confirm_password'
+      />
+    </section>
+    <button type='submit'>
+      Register
+    </button>
+  </form>
+  <a href="/">
+    Back
+  </a>
+  <a href="/log-in">
+    Log In
+  </a>
+</body>
+</html>
