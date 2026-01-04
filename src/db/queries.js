@@ -40,7 +40,8 @@ exports.getAllMessages = async () => {
         users.firstname, 
         users.lastname
       FROM messages
-      JOIN users ON messages.user_id = users.id;
+      JOIN users ON messages.user_id = users.id
+      ORDER BY messages.date DESC;
     `);
     return rows;
   } catch (error) {
