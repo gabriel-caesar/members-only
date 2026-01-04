@@ -12,6 +12,7 @@
   <form 
     action="/sign-up"
     method='POST'
+    style='display: flex; flex-direction: column; justify-content: start; align-items: center;'
   >
     <section id='firstname-section'>
       <label for="firstname">First Name</label>
@@ -21,6 +22,8 @@
         aria-label='First-Name'
         name='firstname'
         placeholder='Foo...'
+        autofocus
+        value='<%= locals.body.firstname ? locals.body.firstname : "" %>'
       />
     </section>
 
@@ -32,6 +35,7 @@
         aria-label='Last-Name'
         name='lastname'
         placeholder='Baz...'
+        value='<%= locals.body.lastname ? locals.body.lastname : "" %>'
       />
     </section>
 
@@ -43,6 +47,7 @@
         aria-label='Email'
         name='email'
         placeholder='bar@foo.com...'
+        value='<%= locals.body.email ? locals.body.email : "" %>'
       />
     </section>
 
@@ -53,6 +58,7 @@
         id='password'
         aria-label='Password'
         name='password'
+        value='<%= locals.body.password ? locals.body.password : "" %>'
       />
     </section>
 
@@ -63,8 +69,12 @@
         id='confirm-password'
         aria-label='Confirm-Password'
         name='confirm_password'
+        value='<%= locals.body.confirm_password ? locals.body.confirm_password : "" %>'
       />
     </section>
+
+    <%- include('./partials/errors.ejs') %>
+
     <button type='submit'>
       Register
     </button>

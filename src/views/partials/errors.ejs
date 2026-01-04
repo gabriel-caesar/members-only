@@ -1,0 +1,16 @@
+
+  <% if (locals.errors.length > 0) { %>
+    <ul 
+      style='border: 1px solid lightcoral; border-radius:6px; padding-inline: 26px; background-color: rgb(251, 53, 53)'
+    >
+      <h3>Errors</h1>
+      <% locals.errors.forEach(error => { %>
+
+        <li style='color:black;margin-block: 1rem;'>
+          <%= error.msg %>
+        </li>
+
+      <% }) %>
+
+    </ul>
+  <% } %>

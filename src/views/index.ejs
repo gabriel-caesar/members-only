@@ -1,19 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= locals.title %></title>
-</head>
-<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
-  <h1 style='font-size:2rem;'>
-    Welcome to Members Only website
-  </h1>
-  <a href="/sign-up">
-    Sign Up
-  </a>
-  <a href="/log-in">
-    Log In
-  </a>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= locals.title %></title>
+  </head>
+  <body
+    style="
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      overflow-x: hidden;
+    "
+  >
+    <% if (locals.user) { %>
+    <h1 style="font-size: 2rem; margin: 0; padding: 0;">
+      Welcome back <span style='color: #a60fb1'><%= locals.user.firstname %></span>
+    </h1>
+    <h4 style='color:#c1be2b; margin: 0; padding: 0; margin-bottom: 1rem'>
+      <%= locals.user.admin ? '(admin)' : locals.user.member ? '(member)' : '(regular user)' %>
+    </h4>
+    <a href="/messages/create" style="color: green"> Create a new message </a>
+    <% if (locals.user.admin) { %>
+      <form action="/resign" method='POST' style='margin-block: 10px'>
+        <button style='color:red'>Resign admin status</button>
+      </form>
+    <% } else if (locals.user.member) { %>
+      <a href="/become-admin" style="color: #0d646c">Become Admin</a>
+    <% } else { %>
+      <a href="/become-member" style="color: #0d646c">Become Member</a>
+    <% } %>
+    <a href="/sign-up"> Sign Up </a>
+    <a href="/log-out" style="color: red"> Log Out </a>
+    <% } else { %>
+    <h1 style="font-size: 2rem">Welcome to Members Only website</h1>
+    <a href="/sign-up"> Sign Up </a>
+    <a href="/log-in"> Log In </a>
+    <% } %>
+
+    <div
+      id="messages-container"
+      style="
+        border: 2px solid #000;
+        border-radius: 6px;
+        padding: 10px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        justify-content: center;
+        align-items: start;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        max-width: 500px; 
+        width: 100%;
+        max-height: 600px;
+      "
+    >
+      <% if (locals.messages.length > 0) { %>
+
+        <ul style="margin: 0; padding: 1rem 1rem 0 1rem;">
+          <%- include('./partials/message-card.ejs') %>
+        </ul>
+
+      <% } else { %>
+
+        <h3>No messages created yet</h3>
+
+      <% } %>
+    </div>
+  </body>
 </html>

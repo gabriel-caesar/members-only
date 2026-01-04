@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+</head>
+<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
+  <h1 style="font-size: 2rem;">
+    Become admin
+  </h1>
+  <p>
+    Answer this question correctly and become an admin:
+  </p>
+  <p style='text-align: center; max-width: 430px;'>
+    In The Odin Project curriculum, what's the total number of projects 
+    contained in the Javascript, React, Databases and NodeJS summed 
+    together and divided by the total number of chapters contained within
+    the Full Stack JavaScript path?
+  </p>
+  <p style='color:red'>
+    (The answer must be only two decimals and only numbers)
+  </p>
+  <form action='/become-admin' method='POST'>
+    <label for="answer">Your answer</label>
+    <input 
+      type='text'
+      placeholder='Baz...'
+      id='answer'
+      name='answer'
+      aria-label='Answer'
+      autofocus
+      value='<%= locals.body.answer ? locals.body.answer : '' %>'
+    />
+    <button type='submit'>Submit</button>
+  </form>
+  <%- include('./partials/errors.ejs') %>
+</body>

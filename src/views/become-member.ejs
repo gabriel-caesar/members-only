@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+</head>
+<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
+  <h1 style="font-size: 2rem;">
+    Become member
+  </h1>
+  <p>
+    Answer this question correctly and become a member:
+  </p>
+  <p>
+    What's the curriculum you're following while completing this project?
+  </p>
+  <p style='color:red'>
+    (Don't include spaces or casing, since the response is case sensitive)
+  </p>
+  <form action='/become-member' method='POST'>
+    <label for="answer">Your answer</label>
+    <input 
+      type='text'
+      placeholder='Baz...'
+      id='answer'
+      name='answer'
+      aria-label='Answer'
+      autofocus
+      value='<%= locals.body.answer ? locals.body.answer : '' %>'
+    />
+    <button type='submit'>Submit</button>
+  </form>
+  <%- include('./partials/errors.ejs') %>
+</body>

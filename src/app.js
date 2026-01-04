@@ -5,6 +5,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const path = require('node:path');
 const indexRouter = require('./routes/indexRouter');
+const messagesRouter = require('./routes/messagesRouter.js');
 require('dotenv').config();
 
 // setting the express backend up
@@ -27,28 +28,12 @@ app.set('view engine', 'ejs');
 const assetsPath = path.join(__dirname, '..', 'public');
 app.use(express.static(assetsPath));
 
-// setting passport up
-passport.use(
-  new LocalStrategy(async (username, password, done) => {
-    try {
-      // getting the user logged in
-    } catch (error) {
-      return done(error);
-    }
-  })
-);
-passport.serializeUser((user, done) => {
-  done(null, user.id);
-});
-passport.deserializeUser(async (id, done) => {
-  try {
-  } catch (error) {
-    done(error);
-  }
-});
+// importing passport's config
+require('./passport.js');
 
 // setting routes and pages up
 app.use('/', indexRouter);
+app.use('/messages', messagesRouter);
 
 // initializing the server
 const PORT = 3000;
@@ -56,14 +41,3 @@ app.listen(PORT, (error) => {
   if (error) throw error;
   console.log(`Running server on localhost:${PORT}`);
 });
-
-
-// users table
-// create table users (
-// username VARCHAR (255),
-// password VARCHAR(255),
-// firstname VARCHAR(255),
-// lastname VARCHAR(255),
-// member BOOLEAN NOT NULL,
-// admin BOOLEAN NOT NULL
-//);

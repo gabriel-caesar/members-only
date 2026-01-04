@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+</head>
+<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
+  <h1 style='font-size:2rem;'>
+    Edit your message
+  </h1>
+  <form 
+    action="/messages/edit/<%= locals.message.id %>"
+    method='POST'
+  >
+    <section id='title-section'>
+      <label for="title">Message Title</label>
+      <input
+        type='text'
+        id='title'
+        aria-label='Message-Title'
+        name='title'
+        placeholder='Foo...'
+        autofocus
+        value='<%= locals.body.title ? locals.body.title : locals.message ? locals.message.title : "" %>'
+      />
+    </section>
+
+    <section id='content-section'>
+      <label for="content">Message Text</label>
+      <textarea
+        type='text'
+        id='content'
+        aria-label='Message-Content'
+        name='content'
+        placeholder='Baz...'
+      ><%= locals.body.content ? locals.body.content : locals.message ? locals.message.content : "" %></textarea>
+    </section>
+
+    <%- include('./partials/errors.ejs') %>
+
+    <button type='submit'>Edit message</button>
+
+  </form>
+  <a href="/">Back</a>
+</body>

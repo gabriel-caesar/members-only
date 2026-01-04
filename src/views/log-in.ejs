@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %></title>
+</head>
+<body style='width: 100vw; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-top: 2rem; overflow-x: hidden'>
+  <h1 style='font-size:2rem;'>
+    Log in to your account
+  </h1>
+  <form 
+    action="/log-in"
+    method='POST'
+  >
+    <section id='email-section'>
+      <label for="email">Email</label>
+      <input
+        type='text'
+        id='email'
+        aria-label='Email'
+        name='email'
+        placeholder='foo@bar.com...'
+        autofocus
+        value='<%= locals.body.email ? locals.body.email : "" %>'
+      />
+    </section>
+    <section id='password-section'>
+      <label for="password">Password</label>
+      <input
+        type='password'
+        id='password'
+        aria-label='password'
+        name='password'
+        autofocus
+        value='<%= locals.body.password ? locals.body.password : "" %>'
+      />
+    </section>
+    <%- include('./partials/errors.ejs') %>
+    <% if (locals.invalid) { %>
+      <h3 style='color:red'>
+        Attention: <%= locals.invalid %>
+      </h3>
+    <% } %>
+    <button type='submit'>Log In</button>
+  </form>
+  <a href="/">
+    Back
+  </a>
+  <a href="/sign-up">
+    Sign up
+  </a>
+</body>
