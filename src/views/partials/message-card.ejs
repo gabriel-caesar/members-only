@@ -14,8 +14,10 @@
 
     <% if (locals.user && locals.user.member) { %>
       <div>
-        <span style="color: #272787">Date:</span> <%= new
-        Date(message.date).toLocaleString() %>
+        <span style="color: #272787">Date:</span> 
+        <%= new Date(message.date).toLocaleString("en-US", {
+          timeZone: "America/New_York"
+        }) %>
       </div>
 
       <div style="margin-bottom: 8px">
