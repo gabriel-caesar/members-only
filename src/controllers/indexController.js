@@ -40,7 +40,7 @@ validateSignUp = [
 
   body('confirm_password')
     .trim()
-    .custom((value, { req }) => value === req.body.confirm_password)
+    .custom((value, { req }) => value === req.body.password)
     .withMessage("Passwords don't match"),
 ];
 

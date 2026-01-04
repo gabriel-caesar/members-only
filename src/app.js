@@ -35,6 +35,27 @@ require('./passport.js');
 app.use('/', indexRouter);
 app.use('/messages', messagesRouter);
 
+// handles 404 not found errors
+app.use(function(req, res, next) {
+    var err = new Error('404 - Not Found');
+    err.status = 404;
+    next(err);
+});
+
+// handling errors
+function errorHandler(err, req, res, next) {
+  if (err) {
+    res.status(err.status || 500);
+    res.render('page-error', { 
+      title: 'Error | Members only',
+      message: err.message === '404 - Not Found' ? err.message : '500 - Internal Server Error',
+      error: err
+    })
+  }
+};
+
+app.use(errorHandler);
+
 // initializing the server
 const PORT = 3000;
 app.listen(PORT, (error) => {

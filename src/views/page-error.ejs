@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= locals.title %>></title>
+</head>
+  <body
+    style="
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding-top: 2rem;
+      overflow-x: hidden;
+    "
+  >
+  <h1>An error has occurred</h1>
+  <h2 style='color: red;'><%= locals.message ? locals.message : '' %></h2>
+  <p style='color:red'>Try again or return home</p>
+  <a href="/">Return Home</a>
+</body>
+</html>
